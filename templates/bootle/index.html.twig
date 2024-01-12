@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BootleController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1>MA CAVE</h1>
+
+		<a href="{{ path('app_bootle_new')}}">New</a>
+		<div>
+			<h2>Rechercher</h2>
+			{{form(form)}}
+			</div>
+			<table class="table table-striped table-responsive">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Année</th>
+						<th>Région</th>
+						<th>Type</th>
+						<th>Rangement</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for bootle in bootles %}
+						<tr>
+							<td>{{ bootle.name }}</td>
+							<td>{{ bootle.year|date('Y') }}</td>
+							<td>{{ bootle.region }}</td>
+							<td>{{ bootle.type }}</td>
+							<td>{{ bootle.storage }}</td>
+							<td>
+								<a href="{{ path('app_bottle_edit', {id: bootle.id})}}">edit</a><br>
+								<a href="{{ path('app_bottle_delete', {id: bootle.id})}}" onclick="return confirm('are you sure to delete this?')">delete</a><br>
+								<a>add</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+		</div>
+	{% endblock %}
